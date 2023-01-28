@@ -13,6 +13,7 @@ import com.songoda.core.database.SQLiteConnector;
 import com.songoda.core.gui.GuiManager;
 import com.songoda.core.hooks.EntityStackerManager;
 import com.songoda.core.hooks.HologramManager;
+import com.songoda.core.hooks.PluginHook;
 import com.songoda.core.hooks.WorldGuardHook;
 import com.songoda.core.utils.TextUtils;
 import com.songoda.ultimatestacker.commands.CommandConvert;
@@ -198,6 +199,7 @@ public class UltimateStacker extends SongodaPlugin {
             stackerHooks.add(new JobsHook());
 
         HologramManager.load(this);
+        HologramManager.getManager().setPreferredHook(PluginHook.HOLO_DISPLAYS);
         EntityStackerManager.load();
 
         // Database stuff, go!
