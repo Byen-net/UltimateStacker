@@ -248,6 +248,7 @@ public class UltimateStacker extends SongodaPlugin {
 
                 for (SpawnerStack spawner : spawners.values()) {
                     if (spawner.getLocation().getWorld() != null) {
+                        if(Settings.DISABLED_WORLDS.getStringList().contains(spawner.getLocation().getWorld().getName())) continue;
                         updateHologram(spawner);
                     }
                 }
@@ -370,6 +371,7 @@ public class UltimateStacker extends SongodaPlugin {
                 spawnerStackManager.removeSpawner(stack.getLocation());
         // are holograms enabled?
         if (!stack.areHologramsEnabled() && !HologramManager.getManager().isEnabled()) return;
+        if(stack.getLocation().getWorld() == null || Settings.DISABLED_WORLDS.getStringList().contains(stack.getLocation().getWorld().getName())) return;
         // update the hologram
         if (!HologramManager.isHologramLoaded(stack.getHologramId())) {
             HologramManager.createHologram(stack.getHologramId(), stack.getLocation(), stack.getHologramName());
